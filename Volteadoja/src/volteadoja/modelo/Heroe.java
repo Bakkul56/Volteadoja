@@ -17,10 +17,10 @@ public class Heroe extends Personaje {
         return clase;
     }
 
-    // Mostrar información del héroe pos las caracteristicas
-    public void mostrarHeroe() {
-
+    // Mostrar información del héroe pos las caracteristicas 
+    @Override
+    public void mostrarEstado() {
         System.out.println("Clase: " + clase);
-        mostrarEstado();
+        super.mostrarEstado();
     }
 }
