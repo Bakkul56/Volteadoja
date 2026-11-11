@@ -18,10 +18,12 @@ public class Enemigo extends Personaje {
     }
 
     // Mostrar información del enemigo
-    public void mostrarEnemigo() {
+    @Override
+  
+    public void mostrarEstado() {
 
         System.out.println("Tipo: " + tipo);
-        mostrarEstado();
+        super.mostrarEstado();
     }
 
     // Calcular el daño de un ataque
