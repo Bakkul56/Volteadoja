@@ -5,13 +5,23 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 
+// For layout usage
+import javafx.scene.control.Button;
+import javafx.scene.layout.VBox;
+import javafx.geometry.Pos;
+
 public class Ventana extends Application {
 	
 	@Override
 	public void start(Stage stage) {
 		
 		Label titulo = new Label("Volteadoja");
-		Scene escena = new Scene(titulo, 800, 600);
+		
+		//Layout use
+		Button btnStart = new Button("Start");
+		VBox menu = new VBox(20, titulo, btnStart);
+		menu.setAlignment(Pos.CENTER);
+		Scene escena = new Scene(menu, 800, 600);		
 		
 
 		stage.setTitle("Volteadoja");
