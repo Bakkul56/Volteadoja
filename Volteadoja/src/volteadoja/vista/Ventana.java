@@ -10,6 +10,11 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.geometry.Pos;
 
+//Para Boder Plane
+
+import javafx.scene.layout.BorderPane;
+import javafx.geometry.Insets;
+
 public class Ventana extends Application {
 	
 	private Stage stage;   // Se llega desde cualquier metodo
@@ -26,7 +31,7 @@ public class Ventana extends Application {
 	// Metodo para crear escenas(Menu)
     private Scene crearMenu() {
         Label titulo = new Label("Volteadoja");
-        Button btnStart = new Button("Start");
+        Button btnStart = new Button("Comenzar");
         btnStart.setOnAction(e -> stage.setScene(crearJuego()));
 
         VBox menu = new VBox(20, titulo, btnStart);
@@ -37,13 +42,33 @@ public class Ventana extends Application {
     
     // Metodo para crear escenas(Menu)
     private Scene crearJuego() {
-        Label placeholder = new Label("Game screen");
-        Button btnSalir = new Button("Exit");
+        VBox enemigos = new VBox(40,
+                new Label("Goblin 1"),
+                new Label("Dragon"),
+                new Label("Goblin 2"));
+        enemigos.setAlignment(Pos.CENTER);
+
+        VBox heroes = new VBox(40,
+                new Label("Mago"),
+                new Label("Guerrero"));
+        heroes.setAlignment(Pos.CENTER);
+        
+        
+        BorderPane campo = new BorderPane();
+        campo.setLeft(enemigos);
+        campo.setRight(heroes);
+        campo.setPadding(new Insets(80));
+        
+        Button btnSalir = new Button("Salir");
         btnSalir.setOnAction(e -> stage.setScene(crearMenu()));
         
-        VBox juego = new VBox(20, placeholder, btnSalir);
-        juego.setAlignment(Pos.CENTER);
+        Label tablero = new Label("Card field goes here");
 
+        BorderPane juego = new BorderPane();
+        juego.setTop(btnSalir);
+        juego.setCenter(campo);
+        juego.setBottom(tablero);
+        
         return new Scene(juego, 720, 900);
     }
 
