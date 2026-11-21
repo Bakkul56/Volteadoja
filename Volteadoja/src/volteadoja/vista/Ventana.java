@@ -21,7 +21,7 @@ public class Ventana extends Application {
 		Button btnStart = new Button("Start");
 		VBox menu = new VBox(20, titulo, btnStart);
 		menu.setAlignment(Pos.CENTER);
-		Scene escena = new Scene(menu, 800, 600);		
+		Scene escena = new Scene(menu, 720, 900);		
 		
 
 		stage.setTitle("Volteadoja");
