@@ -15,6 +15,10 @@ import javafx.geometry.Pos;
 import javafx.scene.layout.BorderPane;
 import javafx.geometry.Insets;
 
+// Para GridPane
+
+import javafx.scene.layout.GridPane;
+
 public class Ventana extends Application {
 	
 	private Stage stage;   // Se llega desde cualquier metodo
@@ -62,8 +66,21 @@ public class Ventana extends Application {
         Button btnSalir = new Button("Salir");
         btnSalir.setOnAction(e -> stage.setScene(crearMenu()));
         
-        Label tablero = new Label("Card field goes here");
-
+        GridPane tablero = new GridPane();
+        tablero.setHgap(8);
+        tablero.setVgap(8);
+        tablero.setAlignment(Pos.CENTER);
+        tablero.setPadding(new Insets(20));
+        
+        //Llenamos el grid
+        for (int fila = 0; fila < 5; fila++) {
+            for (int columna = 0; columna < 5; columna++) {
+                Button carta = new Button("?");
+                carta.setPrefSize(70, 95);
+                tablero.add(carta, columna, fila);  //We add the button to the GridPane
+            }
+        }
+        
         BorderPane juego = new BorderPane();
         juego.setTop(btnSalir);
         juego.setCenter(campo);
