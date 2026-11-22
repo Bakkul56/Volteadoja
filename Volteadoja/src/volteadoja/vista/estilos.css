@@ -1,0 +1,45 @@
+/* Fondo y texto general */
+.root {
+    -fx-background-color: #1e1e2e;
+    -fx-font-family: "Segoe UI";
+}
+
+.label {
+    -fx-text-fill: #f0f0f0;
+    -fx-font-size: 16px;
+}
+
+/* Título del menú */
+.titulo {
+    -fx-font-size: 48px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #f5c542;
+}
+
+/* Cartas boca abajo */
+.carta {
+    -fx-background-color: #b03a2e;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+}
+
+.carta:hover {
+    -fx-background-color: #d04a3c;
+}
+
+/* Cartas eliminadas: invisibles, pero siguen ocupando su lugar */
+.carta:disabled {
+    -fx-opacity: 0;
+}
+
+/* Cartas boca arriba */
+.carta.descubierta {
+    -fx-background-color: #f4f1e8;
+    -fx-text-fill: #2b2b2b;
+}
+
+.carta.descubierta:hover {
+    -fx-background-color: #f4f1e8;
+}
