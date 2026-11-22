@@ -1,13 +1,13 @@
 package volteadoja.principal;
 
-import volteadoja.logica.Juego;
+import javafx.application.Application;
+import volteadoja.vista.Ventana;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        Juego juego = new Juego();
-        juego.iniciar();
+    	Application.launch(Ventana.class, args);
 
     }
 }
