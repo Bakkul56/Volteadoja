@@ -1,5 +1,8 @@
 package volteadoja.vista;
 
+import volteadoja.modelo.Heroe;
+import volteadoja.modelo.Enemigo;
+
 import javafx.application.Application;
 
 //Modelo del juego
@@ -62,21 +65,14 @@ public class Ventana extends Application {
     	
     	Juego partida = new Juego();
     	
-        VBox enemigos = new VBox(40,
-                new Label("Goblin 1"),
-                new Label("Dragon"),
-                new Label("Goblin 2"));
-        enemigos.setAlignment(Pos.CENTER);
-
-        VBox heroes = new VBox(40,
-                new Label("Mago"),
-                new Label("Guerrero"));
-        heroes.setAlignment(Pos.CENTER);
+        Label lblEnemigo = new Label();
+        Label lblHeroe = new Label();
+        actualizarCampo(partida, lblHeroe, lblEnemigo);   // texto inicial
         
         
         BorderPane campo = new BorderPane();
-        campo.setLeft(enemigos);
-        campo.setRight(heroes);
+        campo.setLeft(lblEnemigo);
+        campo.setRight(lblHeroe);
         campo.setPadding(new Insets(80));
         
         Button btnSalir = new Button("Salir");
@@ -101,6 +97,7 @@ public class Ventana extends Application {
                 btnCarta.setOnAction(e -> {
                     Resultado r = partida.seleccionar(f, c);
                     actualizarTablero(partida, botones);   // mostrar ya la carta volteada
+                    actualizarCampo(partida, lblHeroe, lblEnemigo);
                     
                     EstadoPartida estado = partida.getEstado();              
                     if (estado == EstadoPartida.VICTORIA) {                  
@@ -155,6 +152,15 @@ public class Ventana extends Application {
                 }
             }
         }
+    }
+    
+    // Muestra nombre y vida actual de cada personaje
+    private void actualizarCampo(Juego partida, Label lblHeroe, Label lblEnemigo) {
+        Heroe h = partida.getHeroe();
+        Enemigo en = partida.getEnemigo();
+
+        lblHeroe.setText(h.getNombre() + "\nHP " + h.getVidaActual() + "/" + h.getVidaMaxima());
+        lblEnemigo.setText(en.getNombre() + "\nHP " + en.getVidaActual() + "/" + en.getVidaMaxima());
     }
     
     // Pantalla final: muestra el resultado y vuelve al menu

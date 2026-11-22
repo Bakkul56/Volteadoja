@@ -14,6 +14,14 @@ public class Combate {
         this.heroe = heroe;
         this.enemigo = enemigo;
     }
+    
+    public Heroe getHeroe() {
+        return heroe;
+    }
+
+    public Enemigo getEnemigo() {
+        return enemigo;
+    }
 
     // Aplicar habilidad de una carta aunque esto estoy pensando en cambiar las habilidades y la tematica pero queda a tu disposición
     public void aplicarEfecto(Carta carta) {
