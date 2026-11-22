@@ -7,7 +7,7 @@ public class Mazo {
 	 
 	private ArrayList<Carta> cartas;
 	private static final int PAREJAS = 24;             // tipos de carta en el mazo
-	private static final int PAREJAS_EN_TABLERO = 12;  // parejas que entran al tablero
+	public static final int PAREJAS_EN_TABLERO = 12;  // parejas que entran al tablero
 
 	    // Creamos el deck
 	    public Mazo() {

@@ -10,15 +10,14 @@ public class Juego {
 	 private Tablero tablero;
 	 private Combate combate;
 	 private int turnos;
+	 private int parejasEncontradas;
 	 private Carta primera;   // Primera carta del turno (null significa que no hay)
 	 private Carta segunda;   // segunda carta si no hicieron pareja(null significa que no hay)
 	 
 	 // Constructor el bob o3o
 	    public Juego() {
 
-	        Mazo mazo = new Mazo();
-
-	        tablero = new Tablero(mazo.prepararTablero());
+	    	repartir();
 	        
 	        Heroe arthur = new Heroe(
 	                "Arthur", "Guerrero", 100, 20, 8
@@ -31,6 +30,21 @@ public class Juego {
 	        combate = new Combate(arthur, goblin);
 	        
 	        turnos = 0;
+	    }
+	    
+	    // Crea un mazo nuevo y arregla parejas otra vez.
+	    private void repartir() {
+	        Mazo mazo = new Mazo();
+	        tablero = new Tablero(mazo.prepararTablero());
+	    }
+	    
+	    // Suma una pareja al llegar a 12 se reparte un tablero nuevo
+	    private void contarPareja() {
+	        parejasEncontradas++;
+	        if (parejasEncontradas == Mazo.PAREJAS_EN_TABLERO && !combate.victoria()) {
+	            repartir();
+	            parejasEncontradas = 0;
+	        }
 	    }
 
 	    // Interface a tablero
@@ -69,15 +83,25 @@ public class Juego {
 	            primera.eliminar();
 	            carta.eliminar();
 	            primera = null;
+
+	         // Cuenta la pareja si son las 12 se reparte
+	            contarPareja();
+
 	            return Resultado.PAREJA;
 	        }
-	        // Guardamos la segunda para establecer el estado.
-	        segunda = carta;
-
-	        //Revisamos si hay Joker
+	        // Joker: vale por cualquier carta
 	        if (primera.getId() == 0 || carta.getId() == 0) {
+	            Carta normal = (primera.getId() == 0) ? carta : primera;
+	            combate.aplicarEfecto(normal);
+	            primera.eliminar();
+	            carta.eliminar();
+	            primera = null;
+	            contarPareja();
 	            return Resultado.JOKER;
 	        }
+
+	        // No hay pareja, guardamos la segunda para mostrarla un momento
+	        segunda = carta;
 
 	        combate.turnoEnemigo();
 	        return Resultado.NO_PAREJA;
@@ -91,6 +115,17 @@ public class Juego {
 	            primera = null;
 	            segunda = null;
 	        }
+	    }
+	    
+	    // Estado general de la partida en el combate
+	    public EstadoPartida getEstado() {
+	        if (combate.derrota()) {
+	            return EstadoPartida.DERROTA;
+	        }
+	        if (combate.victoria()) {
+	            return EstadoPartida.VICTORIA;
+	        }
+	        return EstadoPartida.EN_CURSO;
 	    }
 	}
 

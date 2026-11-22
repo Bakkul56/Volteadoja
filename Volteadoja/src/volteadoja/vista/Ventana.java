@@ -101,7 +101,7 @@ public class Ventana extends Application {
                     Resultado r = partida.seleccionar(f, c);
                     actualizarTablero(partida, botones);   // mostrar ya la carta volteada
 
-                    if (r == Resultado.NO_PAREJA || r == Resultado.JOKER) {
+                    if (r == Resultado.NO_PAREJA) {
                         PauseTransition pausa = new PauseTransition(Duration.seconds(1));
                         pausa.setOnFinished(ev -> {
                             partida.ocultarFallidas();
@@ -138,8 +138,10 @@ public class Ventana extends Application {
                     boton.setDisable(true);
                 } else if (carta.isDescubierta()) {
                     boton.setText(carta.getNombre());
+                    boton.setDisable(false);
                 } else {
                     boton.setText("?");
+                    boton.setDisable(false);
                 }
             }
         }
