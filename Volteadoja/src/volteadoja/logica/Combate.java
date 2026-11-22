@@ -32,6 +32,7 @@ public class Combate {
         switch (carta.getEfecto()) {
 
             case "DANO":
+            case "VENENO":
 
                 System.out.println("La habilidad causa daño.");
 
@@ -44,6 +45,14 @@ public class Combate {
                 System.out.println("El heroe recupera vida.");
 
                 heroe.curar(carta.getPoder());
+
+                break;
+                
+            case "ESCUDO":
+
+                System.out.println("El heroe se protege.");
+
+                heroe.aumentarDefensa(carta.getPoder() / 5);
 
                 break;
 

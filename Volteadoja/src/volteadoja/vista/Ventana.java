@@ -160,6 +160,8 @@ public class Ventana extends Application {
         Enemigo en = partida.getEnemigo();
 
         lblHeroe.setText(h.getNombre() + "\nHP " + h.getVidaActual() + "/" + h.getVidaMaxima());
+        lblHeroe.setText(h.getNombre() + "\nHP " + h.getVidaActual() + "/" + h.getVidaMaxima()
+        + "\nDEF " + h.getDefensa());
         lblEnemigo.setText(en.getNombre() + "\nHP " + en.getVidaActual() + "/" + en.getVidaMaxima());
     }
     
