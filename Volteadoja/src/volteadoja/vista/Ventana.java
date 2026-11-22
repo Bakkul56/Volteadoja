@@ -82,7 +82,7 @@ public class Ventana extends Application {
         BorderPane campo = new BorderPane();
         campo.setLeft(lblEnemigo);
         campo.setRight(lblHeroe);
-        campo.setPadding(new Insets(80));
+        campo.setPadding(new Insets(20, 60, 20, 60));
         
         Button btnSalir = new Button("Salir");
         btnSalir.setOnAction(e -> stage.setScene(crearMenu()));

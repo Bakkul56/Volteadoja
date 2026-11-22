@@ -23,6 +23,17 @@
     -fx-font-weight: bold;
     -fx-background-radius: 8;
     -fx-cursor: hand;
+	
+	-fx-border-image-source: url("img/slt_02.png");
+	-fx-border-image-slice: 20;
+	-fx-border-image-width: 6;
+	-fx-border-image-repeat: stretch;
+	-fx-background-insets: 3;
+	
+	-fx-padding: 2;
+	-fx-font-size: 11px;
+	-fx-wrap-text: true;
+	-fx-text-alignment: center;
 }
 
 .carta:hover {
