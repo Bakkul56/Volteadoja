@@ -88,4 +88,15 @@ public class Personaje {
             + " | DEF: " + defensa
         );
     }
+    // Sube la defensa (efecto ESCUDO)
+    public void aumentarDefensa(int cantidad) {
+        defensa += Math.max(0, cantidad);
+        System.out.println(nombre + " ahora tiene " + defensa + " de defensa.");
+    }
+    
+    // Baja el ataque, sin pasar de 0 (efecto DEBILIDAD)
+    public void reducirAtaque(int cantidad) {
+        ataque = Math.max(0, ataque - Math.max(0, cantidad));
+        System.out.println(nombre + " ahora tiene " + ataque + " de ataque.");
+    }
 }

@@ -14,6 +14,14 @@ public class Combate {
         this.heroe = heroe;
         this.enemigo = enemigo;
     }
+    
+    public Heroe getHeroe() {
+        return heroe;
+    }
+
+    public Enemigo getEnemigo() {
+        return enemigo;
+    }
 
     // Aplicar habilidad de una carta aunque esto estoy pensando en cambiar las habilidades y la tematica pero queda a tu disposición
     public void aplicarEfecto(Carta carta) {
@@ -24,6 +32,7 @@ public class Combate {
         switch (carta.getEfecto()) {
 
             case "DANO":
+            case "VENENO":
 
                 System.out.println("La habilidad causa daño.");
 
@@ -38,7 +47,23 @@ public class Combate {
                 heroe.curar(carta.getPoder());
 
                 break;
+                
+            case "ESCUDO":
 
+                System.out.println("El heroe se protege.");
+
+                heroe.aumentarDefensa(carta.getPoder() / 5);
+
+                break;
+                
+            case "DEBILIDAD":
+
+                System.out.println("El enemigo se debilita.");
+
+                enemigo.reducirAtaque(carta.getPoder() / 5);
+
+                break;
+                
             default:
 
                 System.out.println(

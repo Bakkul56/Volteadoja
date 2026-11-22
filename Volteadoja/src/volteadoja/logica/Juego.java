@@ -127,6 +127,15 @@ public class Juego {
 	        }
 	        return EstadoPartida.EN_CURSO;
 	    }
+	    
+	    // Acceso a los personajes para mostrarlos en pantalla
+	    public Heroe getHeroe() {
+	        return combate.getHeroe();
+	    }
+
+	    public Enemigo getEnemigo() {
+	        return combate.getEnemigo();
+	    }
 	}
 
 
