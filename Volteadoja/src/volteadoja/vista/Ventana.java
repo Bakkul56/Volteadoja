@@ -24,8 +24,9 @@ import javafx.geometry.Insets;
 
 import javafx.scene.layout.GridPane;
 
-// comportamiento de la carta
+// estados carta y partida
 import volteadoja.logica.Resultado;
+import volteadoja.logica.EstadoPartida; 
 
 //Transicion
 import javafx.animation.PauseTransition;
@@ -100,7 +101,16 @@ public class Ventana extends Application {
                 btnCarta.setOnAction(e -> {
                     Resultado r = partida.seleccionar(f, c);
                     actualizarTablero(partida, botones);   // mostrar ya la carta volteada
-
+                    
+                    EstadoPartida estado = partida.getEstado();              
+                    if (estado == EstadoPartida.VICTORIA) {                  
+                        stage.setScene(crearFin("Victoria! El enemigo fue derrotado."));
+                        return;
+                    }
+                    if (estado == EstadoPartida.DERROTA) {                   
+                        stage.setScene(crearFin("Derrota..."));
+                        return;
+                    }
                     if (r == Resultado.NO_PAREJA) {
                         PauseTransition pausa = new PauseTransition(Duration.seconds(1));
                         pausa.setOnFinished(ev -> {
@@ -147,5 +157,16 @@ public class Ventana extends Application {
         }
     }
     
+    // Pantalla final: muestra el resultado y vuelve al menu
+    private Scene crearFin(String mensaje) {
+        Label texto = new Label(mensaje);
+        Button btnMenu = new Button("Volver al menu");
+        btnMenu.setOnAction(e -> stage.setScene(crearMenu()));
+
+        VBox fin = new VBox(20, texto, btnMenu);
+        fin.setAlignment(Pos.CENTER);
+
+        return new Scene(fin, 720, 900);
+    }
     
 }
