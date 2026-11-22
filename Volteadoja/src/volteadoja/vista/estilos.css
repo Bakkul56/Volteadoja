@@ -1,0 +1,86 @@
+/* Fondo y texto general */
+.root {
+    -fx-background-color: #1e1e2e;
+    -fx-font-family: "Segoe UI";
+}
+
+.label {
+    -fx-text-fill: #f0f0f0;
+    -fx-font-size: 16px;
+}
+
+/* Título del menú */
+.titulo {
+    -fx-font-size: 48px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #f5c542;
+}
+
+/* Cartas boca abajo */
+.carta {
+    -fx-background-color: #b03a2e;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+	
+	-fx-border-image-source: url("img/slt_02.png");
+	-fx-border-image-slice: 20;
+	-fx-border-image-width: 6;
+	-fx-border-image-repeat: stretch;
+	-fx-background-insets: 3;
+	
+	-fx-padding: 2;
+	-fx-font-size: 10px;
+	-fx-wrap-text: true;
+	-fx-text-alignment: center;
+}
+
+.carta:hover {
+    -fx-background-color: #d04a3c;
+}
+
+/* Cartas eliminadas: invisibles, pero siguen ocupando su lugar */
+.carta:disabled {
+    -fx-opacity: 0;
+}
+
+/* Cartas boca arriba */
+.carta.descubierta {
+    -fx-background-color: #f4f1e8;
+    -fx-text-fill: #2b2b2b;
+}
+
+.carta.descubierta:hover {
+    -fx-background-color: #f4f1e8;
+}
+
+/* Campo de batalla con fondo */
+.campo {
+    -fx-background-image: url("img/bg_01.png");
+    -fx-background-size: cover;
+    -fx-background-position: center;
+}
+
+/* Recuadro detrás del texto de cada personaje, para que se lea sobre el fondo */
+.personaje {
+    -fx-background-color: rgba(0, 0, 0, 0.55);
+    -fx-background-radius: 8;
+    -fx-padding: 10;
+}
+
+/* Panel inferior: textura de piedra a todo el ancho */
+.panel {
+    -fx-background-image: url("img/txtr_01.png");
+    -fx-background-repeat: repeat;
+    -fx-background-size: 256 256;
+    -fx-padding: 10;
+}
+
+/* Marco ajustado alrededor de las cartas */
+.tablero {
+    -fx-border-image-source: url("img/fr_03.png");
+    -fx-border-image-slice: 16;
+    -fx-border-image-width: 16;
+    -fx-border-image-repeat: stretch;
+}

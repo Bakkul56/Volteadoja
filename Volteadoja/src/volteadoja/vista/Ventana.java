@@ -35,6 +35,11 @@ import volteadoja.logica.EstadoPartida;
 import javafx.animation.PauseTransition;
 import javafx.util.Duration;
 
+// Para el css
+import javafx.scene.Parent;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
+
 public class Ventana extends Application {
 	
 	private Stage stage;   // Se llega desde cualquier metodo
@@ -51,13 +56,14 @@ public class Ventana extends Application {
 	// Metodo para crear escenas(Menu)
     private Scene crearMenu() {
         Label titulo = new Label("Volteadoja");
+        titulo.getStyleClass().add("titulo");
         Button btnStart = new Button("Comenzar");
         btnStart.setOnAction(e -> stage.setScene(crearJuego()));
 
         VBox menu = new VBox(20, titulo, btnStart);
         menu.setAlignment(Pos.CENTER);
 
-        return new Scene(menu, 720, 900);
+        return nuevaEscena(menu);
     }
     
     // Metodo para crear escenas(Menu)
@@ -67,22 +73,27 @@ public class Ventana extends Application {
     	
         Label lblEnemigo = new Label();
         Label lblHeroe = new Label();
+        lblEnemigo.getStyleClass().add("personaje");
+        lblHeroe.getStyleClass().add("personaje");
+        
         actualizarCampo(partida, lblHeroe, lblEnemigo);   // texto inicial
         
         
         BorderPane campo = new BorderPane();
         campo.setLeft(lblEnemigo);
         campo.setRight(lblHeroe);
-        campo.setPadding(new Insets(80));
+        campo.setPadding(new Insets(20, 60, 20, 60));
         
         Button btnSalir = new Button("Salir");
         btnSalir.setOnAction(e -> stage.setScene(crearMenu()));
         
         GridPane tablero = new GridPane();
-        tablero.setHgap(8);
-        tablero.setVgap(8);
+        tablero.getStyleClass().add("tablero");
+        tablero.setMaxSize(Region.USE_PREF_SIZE, Region.USE_PREF_SIZE);
+        tablero.setHgap(6);
+        tablero.setVgap(6);
         tablero.setAlignment(Pos.CENTER);
-        tablero.setPadding(new Insets(20));
+        tablero.setPadding(new Insets(6));
         
         //Llenamos el grid
         Button[][] botones = new Button[5][5];
@@ -93,7 +104,8 @@ public class Ventana extends Application {
             	
 
                 Button btnCarta = new Button("?");
-                btnCarta.setPrefSize(70, 95);
+                btnCarta.setPrefSize(54, 72);
+                btnCarta.getStyleClass().add("carta");
                 btnCarta.setOnAction(e -> {
                     Resultado r = partida.seleccionar(f, c);
                     actualizarTablero(partida, botones);   // mostrar ya la carta volteada
@@ -125,11 +137,14 @@ public class Ventana extends Application {
         }
         
         BorderPane juego = new BorderPane();
+        campo.getStyleClass().add("campo");
         juego.setTop(btnSalir);
         juego.setCenter(campo);
-        juego.setBottom(tablero);
+        StackPane panelCartas = new StackPane(tablero);
+        panelCartas.getStyleClass().add("panel");
+        juego.setBottom(panelCartas);
         
-        return new Scene(juego, 720, 900);
+        return nuevaEscena(juego);
     }
     
     
@@ -140,12 +155,16 @@ public class Ventana extends Application {
                 Carta carta = partida.getCarta(fila, columna);
                 Button boton = botones[fila][columna];
 
+                // Quitar la clase por defecto se vuelve a poner si está boca arriba
+                boton.getStyleClass().remove("descubierta");
+                
                 if (carta.isEliminada()) {
                     boton.setText("");
                     boton.setDisable(true);
                 } else if (carta.isDescubierta()) {
                     boton.setText(carta.getNombre());
                     boton.setDisable(false);
+                    boton.getStyleClass().add("descubierta");
                 } else {
                     boton.setText("?");
                     boton.setDisable(false);
@@ -179,7 +198,15 @@ public class Ventana extends Application {
         VBox fin = new VBox(20, texto, btnMenu);
         fin.setAlignment(Pos.CENTER);
 
-        return new Scene(fin, 720, 900);
+        return nuevaEscena(fin);
+    }
+    
+    // Crea una escena con la hoja de estilos aplicada
+    private Scene nuevaEscena(Parent raiz) {
+        Scene escena = new Scene(raiz, 720, 900);
+        escena.getStylesheets().add(
+                getClass().getResource("estilos.css").toExternalForm());
+        return escena;
     }
     
 }
