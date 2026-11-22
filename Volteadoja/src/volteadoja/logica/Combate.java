@@ -55,7 +55,15 @@ public class Combate {
                 heroe.aumentarDefensa(carta.getPoder() / 5);
 
                 break;
+                
+            case "DEBILIDAD":
 
+                System.out.println("El enemigo se debilita.");
+
+                enemigo.reducirAtaque(carta.getPoder() / 5);
+
+                break;
+                
             default:
 
                 System.out.println(

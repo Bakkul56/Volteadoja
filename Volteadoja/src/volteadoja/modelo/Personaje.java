@@ -93,4 +93,10 @@ public class Personaje {
         defensa += Math.max(0, cantidad);
         System.out.println(nombre + " ahora tiene " + defensa + " de defensa.");
     }
+    
+    // Baja el ataque, sin pasar de 0 (efecto DEBILIDAD)
+    public void reducirAtaque(int cantidad) {
+        ataque = Math.max(0, ataque - Math.max(0, cantidad));
+        System.out.println(nombre + " ahora tiene " + ataque + " de ataque.");
+    }
 }

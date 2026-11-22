@@ -163,6 +163,8 @@ public class Ventana extends Application {
         lblHeroe.setText(h.getNombre() + "\nHP " + h.getVidaActual() + "/" + h.getVidaMaxima()
         + "\nDEF " + h.getDefensa());
         lblEnemigo.setText(en.getNombre() + "\nHP " + en.getVidaActual() + "/" + en.getVidaMaxima());
+        lblEnemigo.setText(en.getNombre() + "\nHP " + en.getVidaActual() + "/" + en.getVidaMaxima()
+        + "\nATQ " + en.getAtaque());
     }
     
     // Pantalla final: muestra el resultado y vuelve al menu
