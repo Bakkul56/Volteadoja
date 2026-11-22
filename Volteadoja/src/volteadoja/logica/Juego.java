@@ -147,6 +147,10 @@ public class Juego {
 	            scanner.next();
 	        }
 	    }
+	    
+	    public Carta getCarta(int fila, int columna) {
+	        return tablero.getCarta(fila, columna);
+	    }
 	}
 
 

@@ -1,6 +1,11 @@
 package volteadoja.vista;
 
 import javafx.application.Application;
+
+//Modelo del juego
+import volteadoja.logica.Juego;
+import volteadoja.modelo.Carta;
+
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -46,6 +51,9 @@ public class Ventana extends Application {
     
     // Metodo para crear escenas(Menu)
     private Scene crearJuego() {
+    	
+    	Juego partida = new Juego();
+    	
         VBox enemigos = new VBox(40,
                 new Label("Goblin 1"),
                 new Label("Dragon"),
@@ -78,11 +86,18 @@ public class Ventana extends Application {
             	final int f = fila;
             	final int c = columna;
             	
-                Button carta = new Button("?");
-                carta.setPrefSize(70, 95);
-                carta.setOnAction(e ->
-                System.out.println("Carta: fila " + f + ", columna " + c));
-                tablero.add(carta, columna, fila);  //We add the button to the GridPane
+
+                Button btnCarta = new Button("?");
+                btnCarta.setPrefSize(70, 95);
+                btnCarta.setOnAction(e -> {
+                    Carta carta = partida.getCarta(f, c);
+                    carta.voltear();
+                    btnCarta.setText(carta.getNombre());
+                });
+                /*carta.setOnAction(e ->
+                System.out.println("Carta: fila " + f + ", columna " + c));*/
+                tablero.add(btnCarta, columna, fila);
+            	
             }
         }
         
