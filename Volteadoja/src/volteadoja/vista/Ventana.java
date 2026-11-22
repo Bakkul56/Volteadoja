@@ -27,6 +27,10 @@ import javafx.scene.layout.GridPane;
 // comportamiento de la carta
 import volteadoja.logica.Resultado;
 
+//Transicion
+import javafx.animation.PauseTransition;
+import javafx.util.Duration;
+
 public class Ventana extends Application {
 	
 	private Stage stage;   // Se llega desde cualquier metodo
@@ -95,12 +99,16 @@ public class Ventana extends Application {
                 btnCarta.setPrefSize(70, 95);
                 btnCarta.setOnAction(e -> {
                     Resultado r = partida.seleccionar(f, c);
+                    actualizarTablero(partida, botones);   // mostrar ya la carta volteada
 
                     if (r == Resultado.NO_PAREJA || r == Resultado.JOKER) {
-                        partida.ocultarFallidas();
+                        PauseTransition pausa = new PauseTransition(Duration.seconds(1));
+                        pausa.setOnFinished(ev -> {
+                            partida.ocultarFallidas();
+                            actualizarTablero(partida, botones);
+                        });
+                        pausa.play();
                     }
-
-                    actualizarTablero(partida, botones);
                 });
    
                 tablero.add(btnCarta, columna, fila);
