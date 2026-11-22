@@ -71,6 +71,9 @@ public class Ventana extends Application {
     	
         Label lblEnemigo = new Label();
         Label lblHeroe = new Label();
+        lblEnemigo.getStyleClass().add("personaje");
+        lblHeroe.getStyleClass().add("personaje");
+        
         actualizarCampo(partida, lblHeroe, lblEnemigo);   // texto inicial
         
         
@@ -130,6 +133,7 @@ public class Ventana extends Application {
         }
         
         BorderPane juego = new BorderPane();
+        campo.getStyleClass().add("campo");
         juego.setTop(btnSalir);
         juego.setCenter(campo);
         juego.setBottom(tablero);

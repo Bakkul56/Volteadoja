@@ -43,3 +43,17 @@
 .carta.descubierta:hover {
     -fx-background-color: #f4f1e8;
 }
+
+/* Campo de batalla con fondo */
+.campo {
+    -fx-background-image: url("img/bg_01.png");
+    -fx-background-size: cover;
+    -fx-background-position: center;
+}
+
+/* Recuadro detrás del texto de cada personaje, para que se lea sobre el fondo */
+.personaje {
+    -fx-background-color: rgba(0, 0, 0, 0.55);
+    -fx-background-radius: 8;
+    -fx-padding: 10;
+}
