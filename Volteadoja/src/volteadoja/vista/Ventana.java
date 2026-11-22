@@ -37,6 +37,8 @@ import javafx.util.Duration;
 
 // Para el css
 import javafx.scene.Parent;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 
 public class Ventana extends Application {
 	
@@ -86,6 +88,8 @@ public class Ventana extends Application {
         btnSalir.setOnAction(e -> stage.setScene(crearMenu()));
         
         GridPane tablero = new GridPane();
+        tablero.getStyleClass().add("tablero");
+        tablero.setMaxSize(Region.USE_PREF_SIZE, Region.USE_PREF_SIZE);
         tablero.setHgap(8);
         tablero.setVgap(8);
         tablero.setAlignment(Pos.CENTER);
@@ -136,7 +140,9 @@ public class Ventana extends Application {
         campo.getStyleClass().add("campo");
         juego.setTop(btnSalir);
         juego.setCenter(campo);
-        juego.setBottom(tablero);
+        StackPane panelCartas = new StackPane(tablero);
+        panelCartas.getStyleClass().add("panel");
+        juego.setBottom(panelCartas);
         
         return nuevaEscena(juego);
     }

@@ -57,3 +57,19 @@
     -fx-background-radius: 8;
     -fx-padding: 10;
 }
+
+/* Panel inferior: textura de piedra a todo el ancho */
+.panel {
+    -fx-background-image: url("img/txtr_01.png");
+    -fx-background-repeat: repeat;
+    -fx-background-size: 256 256;
+    -fx-padding: 20;
+}
+
+/* Marco ajustado alrededor de las cartas */
+.tablero {
+    -fx-border-image-source: url("img/fr_03.png");
+    -fx-border-image-slice: 28;
+    -fx-border-image-width: 28;
+    -fx-border-image-repeat: stretch;
+}
