@@ -6,6 +6,8 @@ import java.util.Collections;
 public class Mazo {
 	 
 	private ArrayList<Carta> cartas;
+	private static final int PAREJAS = 24;             // tipos de carta en el mazo
+	public static final int PAREJAS_EN_TABLERO = 12;  // parejas que entran al tablero
 
 	    // Creamos el deck
 	    public Mazo() {
@@ -13,36 +15,48 @@ public class Mazo {
 	        crearMazo();
 	    }
 
-	    // Creando las 50 iniciales esto suena como los 50 principales
+	    // Crea los 24 tipos de carta (una pareja de cada uno)
 	    private void crearMazo() {
 
 	        String[] nombres = {
 	            "Cura", "Fuego", "Escudo",
 	            "Veneno", "Hielo", "Rayo",
 	            "Espada", "Pocion", "Defensa",
-	            "Oscuridad", "Luz", "Viento"
+	            "Oscuridad", "Luz", "Viento",
+	            "Gran Cura", "Meteoro", "Barrera",
+	            "Toxina", "Terremoto", "Elixir",
+	            "Maldicion", "Lanza", "Muralla",
+	            "Tornado", "Regenera", "Plaga"
 	        };
 
 	        String[] efectos = {
 	            "CURACION", "DANO", "ESCUDO",
 	            "VENENO", "DANO", "DANO",
 	            "DANO", "CURACION", "ESCUDO",
-	            "DEBILIDAD", "CURACION", "DANO"
+	            "DEBILIDAD", "CURACION", "DANO",
+	            "CURACION", "DANO", "ESCUDO",
+	            "VENENO", "DANO", "CURACION",
+	            "DEBILIDAD", "DANO", "ESCUDO",
+	            "DANO", "CURACION", "VENENO"
 	        };
 
 	        int[] poderes = {
 	            20, 15, 15,
 	            5, 15, 20,
 	            20, 25, 10,
-	            10, 30, 15
+	            10, 30, 15,
+	            40, 30, 20,
+	            8, 25, 50,
+	            15, 18, 25,
+	            20, 15, 10
 	        };
 
 	        int id = 1;
 
-	        // Crear 24 parejas somos mejor que tinder eh
-	        for (int i = 0; i < 24; i++) {
+	        // Crear una pareja de cada tipo
+	        for (int i = 0; i < PAREJAS; i++) {
 
-	            int tipo = i % nombres.length;
+	            int tipo = i;   
 
 	            cartas.add(new Carta(
 	                id,
@@ -61,9 +75,9 @@ public class Mazo {
 	            id++;
 	        }
 
-	        // Agregar dos jokers supongo que al guason no es trampra :v
+	        // Agregar UN jokers supongo que al guason no es trampra :v
 	        cartas.add(new Carta(0, "Joker", "COMODIN", 0));
-	        cartas.add(new Carta(0, "Joker", "COMODIN", 0));
+
 
 	        Collections.shuffle(cartas);
 	    }
@@ -73,16 +87,16 @@ public class Mazo {
 
 	        ArrayList<Carta> seleccionadas = new ArrayList<>();
 
-	        // Elegir 12 parejas diferentes
+	        // Elegir 12 tipos al azar; los otros 12 quedan fuera esta partida
 	        ArrayList<Integer> ids = new ArrayList<>();
 
-	        for (int i = 1; i <= 24; i++) {
+	        for (int i = 1; i <= PAREJAS; i++) {
 	            ids.add(i);
 	        }
 
 	        Collections.shuffle(ids);
 
-	        for (int i = 0; i < 12; i++) {
+	        for (int i = 0; i < PAREJAS_EN_TABLERO; i++) {
 
 	            int idSeleccionado = ids.get(i);
 
