@@ -75,8 +75,13 @@ public class Ventana extends Application {
         //Llenamos el grid
         for (int fila = 0; fila < 5; fila++) {
             for (int columna = 0; columna < 5; columna++) {
+            	final int f = fila;
+            	final int c = columna;
+            	
                 Button carta = new Button("?");
                 carta.setPrefSize(70, 95);
+                carta.setOnAction(e ->
+                System.out.println("Carta: fila " + f + ", columna " + c));
                 tablero.add(carta, columna, fila);  //We add the button to the GridPane
             }
         }
