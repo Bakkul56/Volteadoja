@@ -24,6 +24,9 @@ import javafx.geometry.Insets;
 
 import javafx.scene.layout.GridPane;
 
+// comportamiento de la carta
+import volteadoja.logica.Resultado;
+
 public class Ventana extends Application {
 	
 	private Stage stage;   // Se llega desde cualquier metodo
@@ -81,6 +84,7 @@ public class Ventana extends Application {
         tablero.setPadding(new Insets(20));
         
         //Llenamos el grid
+        Button[][] botones = new Button[5][5];
         for (int fila = 0; fila < 5; fila++) {
             for (int columna = 0; columna < 5; columna++) {
             	final int f = fila;
@@ -90,13 +94,17 @@ public class Ventana extends Application {
                 Button btnCarta = new Button("?");
                 btnCarta.setPrefSize(70, 95);
                 btnCarta.setOnAction(e -> {
-                    Carta carta = partida.getCarta(f, c);
-                    carta.voltear();
-                    btnCarta.setText(carta.getNombre());
+                    Resultado r = partida.seleccionar(f, c);
+
+                    if (r == Resultado.NO_PAREJA || r == Resultado.JOKER) {
+                        partida.ocultarFallidas();
+                    }
+
+                    actualizarTablero(partida, botones);
                 });
-                /*carta.setOnAction(e ->
-                System.out.println("Carta: fila " + f + ", columna " + c));*/
+   
                 tablero.add(btnCarta, columna, fila);
+                botones[fila][columna] = btnCarta; //Guardando en el array
             	
             }
         }
@@ -108,5 +116,26 @@ public class Ventana extends Application {
         
         return new Scene(juego, 720, 900);
     }
+    
+    
+    // Actualizamos todos los botones para que muestren su estado actual.
+    private void actualizarTablero(Juego partida, Button[][] botones) {
+        for (int fila = 0; fila < 5; fila++) {
+            for (int columna = 0; columna < 5; columna++) {
+                Carta carta = partida.getCarta(fila, columna);
+                Button boton = botones[fila][columna];
 
+                if (carta.isEliminada()) {
+                    boton.setText("");
+                    boton.setDisable(true);
+                } else if (carta.isDescubierta()) {
+                    boton.setText(carta.getNombre());
+                } else {
+                    boton.setText("?");
+                }
+            }
+        }
+    }
+    
+    
 }
