@@ -90,10 +90,10 @@ public class Ventana extends Application {
         GridPane tablero = new GridPane();
         tablero.getStyleClass().add("tablero");
         tablero.setMaxSize(Region.USE_PREF_SIZE, Region.USE_PREF_SIZE);
-        tablero.setHgap(8);
-        tablero.setVgap(8);
+        tablero.setHgap(6);
+        tablero.setVgap(6);
         tablero.setAlignment(Pos.CENTER);
-        tablero.setPadding(new Insets(20));
+        tablero.setPadding(new Insets(6));
         
         //Llenamos el grid
         Button[][] botones = new Button[5][5];
@@ -104,7 +104,7 @@ public class Ventana extends Application {
             	
 
                 Button btnCarta = new Button("?");
-                btnCarta.setPrefSize(70, 95);
+                btnCarta.setPrefSize(54, 72);
                 btnCarta.getStyleClass().add("carta");
                 btnCarta.setOnAction(e -> {
                     Resultado r = partida.seleccionar(f, c);
