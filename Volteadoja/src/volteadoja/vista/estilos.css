@@ -1,11 +1,24 @@
 /* Fondo y texto general */
 .root {
-    -fx-background-color: #1e1e2e;
+	/* Paleta */
+	carbon-black:   #191919;
+	carbon-black-3: #1b1918;
+	carbon-black-4: #231e18;
+	dark-coffee:    #302821;
+	olive-wood:     #7f6d5b;
+	toffee-brown:   #945a39;
+	faded-copper:   #a38267;
+	pale-oak:       #d3c3aa;
+	embered-clay:   #b03a2e;
+	pompeian-red:	#d04a3c;
+	wishful-white:	#f4f1e8;
+	
+    -fx-background-color: dark-coffee;
     -fx-font-family: "Segoe UI";
 }
 
 .label {
-    -fx-text-fill: #f0f0f0;
+    -fx-text-fill: carbon-black;
     -fx-font-size: 16px;
 }
 
@@ -13,13 +26,13 @@
 .titulo {
     -fx-font-size: 48px;
     -fx-font-weight: bold;
-    -fx-text-fill: #f5c542;
+    -fx-text-fill: toffee-brown;
 	-fx-effect: dropshadow(gaussian, black, 8, 0.5, 8, 8);
 }
 
 /* Cartas boca abajo */
 .carta {
-    -fx-background-color: #b03a2e;
+    -fx-background-color: embered-clay;
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-background-radius: 8;
@@ -38,7 +51,7 @@
 }
 
 .carta:hover {
-    -fx-background-color: #d04a3c;
+    -fx-background-color: pompeian-red;
 }
 
 /* Cartas eliminadas: invisibles, pero siguen ocupando su lugar */
@@ -48,12 +61,8 @@
 
 /* Cartas boca arriba */
 .carta.descubierta {
-    -fx-background-color: #f4f1e8;
-    -fx-text-fill: #2b2b2b;
-}
-
-.carta.descubierta:hover {
-    -fx-background-color: #f4f1e8;
+    -fx-background-color: pale-oak;
+    -fx-text-fill: carbon-black-4;
 }
 
 /* Campo de batalla con fondo */
