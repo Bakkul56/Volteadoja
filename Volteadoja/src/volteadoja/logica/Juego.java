@@ -13,6 +13,7 @@ public class Juego {
 	 private int parejasEncontradas;
 	 private Carta primera;   // Primera carta del turno (null significa que no hay)
 	 private Carta segunda;   // segunda carta si no hicieron pareja(null significa que no hay)
+	 private boolean turnoAcertado;
 	 
 	 // Constructor el bob o3o
 	    public Juego() {
@@ -80,40 +81,47 @@ public class Juego {
 
 	        if (primera.esPareja(carta)) {
 	            combate.aplicarEfecto(primera);
-	            primera.eliminar();
-	            carta.eliminar();
-	            primera = null;
-
-	         // Cuenta la pareja si son las 12 se reparte
-	            contarPareja();
-
+	            segunda = carta;
+	            turnoAcertado = true;
 	            return Resultado.PAREJA;
 	        }
+	        
 	        // Joker: vale por cualquier carta
 	        if (primera.getId() == 0 || carta.getId() == 0) {
 	            Carta normal = (primera.getId() == 0) ? carta : primera;
 	            combate.aplicarEfecto(normal);
-	            primera.eliminar();
-	            carta.eliminar();
-	            primera = null;
-	            contarPareja();
+	            segunda = carta;
+	            turnoAcertado = true;
 	            return Resultado.JOKER;
 	        }
 
 	        // No hay pareja, guardamos la segunda para mostrarla un momento
 	        segunda = carta;
+	        turnoAcertado = false;
 
 	        combate.turnoEnemigo();
 	        return Resultado.NO_PAREJA;
 	    }
 	    
-	    // Oculta las dos cartas falladas y deja listo el siguiente turno
-	    public void ocultarFallidas() {
-	        if (segunda != null) {
+	 
+	    // Termina el turno: retira las cartas si hicieron pareja o las oculta sino
+	    public void resolverTurno() {
+	        if (segunda == null) {
+	            return;
+	        }
+	        if (turnoAcertado) {
+	            primera.eliminar();
+	            segunda.eliminar();
+	        } else {
 	            primera.ocultar();
 	            segunda.ocultar();
-	            primera = null;
-	            segunda = null;
+	        }
+	        primera = null;
+	        segunda = null;
+
+	        //para repartir un tablero nuevo
+	        if (turnoAcertado) {
+	            contarPareja();   
 	        }
 	    }
 	    
