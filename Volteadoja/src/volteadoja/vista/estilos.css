@@ -1,11 +1,26 @@
 /* Fondo y texto general */
 .root {
-    -fx-background-color: #1e1e2e;
+	/* Paleta */
+	carbon-black:   #191919;
+	carbon-black-3: #1b1918;
+	carbon-black-4: #231e18;
+	dark-coffee:    #302821;
+	olive-wood:     #7f6d5b;
+	toffee-brown:   #945a39;
+	faded-copper:   #a38267;
+	pale-oak:       #d3c3aa;
+	rust-brown:   	#a14320;
+	autumm-leaf:	#ea6823;
+	wishful-white:	#f4f1e8;
+	
+	carbon-black-alpha: rgba(25, 25, 25, 0.55);
+	
+    -fx-background-color: dark-coffee;
     -fx-font-family: "Segoe UI";
 }
 
 .label {
-    -fx-text-fill: #f0f0f0;
+    -fx-text-fill: wishful-white;
     -fx-font-size: 16px;
 }
 
@@ -13,13 +28,20 @@
 .titulo {
     -fx-font-size: 48px;
     -fx-font-weight: bold;
-    -fx-text-fill: #f5c542;
+    -fx-text-fill: faded-copper;
+	-fx-effect: dropshadow(gaussian, carbon-black, 8, 0.5, 8, 8);
 }
+.titulo.final {
+	-fx-font-size: 16px;
+	-fx-content-display: left; 
+	-fx-graphic-text-gap: 6; 
+}
+
 
 /* Cartas boca abajo */
 .carta {
-    -fx-background-color: #b03a2e;
-    -fx-text-fill: white;
+    -fx-background-color: rust-brown;
+    -fx-text-fill: wishful-white;
     -fx-font-weight: bold;
     -fx-background-radius: 8;
     -fx-cursor: hand;
@@ -37,7 +59,7 @@
 }
 
 .carta:hover {
-    -fx-background-color: #d04a3c;
+    -fx-background-color: autumm-leaf;
 }
 
 /* Cartas eliminadas: invisibles, pero siguen ocupando su lugar */
@@ -47,25 +69,21 @@
 
 /* Cartas boca arriba */
 .carta.descubierta {
-    -fx-background-color: #f4f1e8;
-    -fx-text-fill: #2b2b2b;
-}
-
-.carta.descubierta:hover {
-    -fx-background-color: #f4f1e8;
+    -fx-background-color: pale-oak;
+    -fx-text-fill: carbon-black-4;
 }
 
 /* Campo de batalla con fondo */
 .campo {
     -fx-background-image: url("img/bg_01.png");
-    -fx-background-size: cover;
+    -fx-background-size: stretch;
     -fx-background-position: center;
 }
 
 /* Recuadro detrás del texto de cada personaje, para que se lea sobre el fondo */
 .personaje {
-    -fx-background-color: rgba(0, 0, 0, 0.55);
-    -fx-background-radius: 8;
+    -fx-background-color: carbon-black-alpha;
+    -fx-background-radius: 16;
     -fx-padding: 10;
 }
 
@@ -80,7 +98,28 @@
 /* Marco ajustado alrededor de las cartas */
 .tablero {
     -fx-border-image-source: url("img/fr_03.png");
-    -fx-border-image-slice: 16;
+    -fx-border-image-slice: 24;
     -fx-border-image-width: 16;
     -fx-border-image-repeat: stretch;
 }
+
+.btn{
+	-fx-background-image: url("img/bt_03_a.PNG");
+	-fx-background-size: stretch;
+	-fx-background-position: center;
+	-fx-background-color: transparent;
+	-fx-background-insets: 10;
+	-fx-background-radius: 16;
+	
+	-fx-text-fill: wishful-white;
+	-fx-font-weight: bold;
+	-fx-font-size: 24px;
+	
+	-fx-content-display: left; 
+	-fx-graphic-text-gap: 6; 
+}
+
+.btn:hover {
+	-fx-background-image: url("img/bt_03_a-fill.PNG");
+}
+
