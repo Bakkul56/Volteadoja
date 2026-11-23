@@ -28,14 +28,14 @@
 .titulo {
     -fx-font-size: 48px;
     -fx-font-weight: bold;
-    -fx-text-fill: toffee-brown;
-	-fx-effect: dropshadow(gaussian, black, 8, 0.5, 8, 8);
+    -fx-text-fill: faded-copper;
+	-fx-effect: dropshadow(gaussian, carbon-black, 8, 0.5, 8, 8);
 }
 
 /* Cartas boca abajo */
 .carta {
     -fx-background-color: embered-clay;
-    -fx-text-fill: white;
+    -fx-text-fill: wishful-white;
     -fx-font-weight: bold;
     -fx-background-radius: 8;
     -fx-cursor: hand;
@@ -92,7 +92,7 @@
 /* Marco ajustado alrededor de las cartas */
 .tablero {
     -fx-border-image-source: url("img/fr_03.png");
-    -fx-border-image-slice: 16;
+    -fx-border-image-slice: 24;
     -fx-border-image-width: 16;
     -fx-border-image-repeat: stretch;
 }

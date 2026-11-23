@@ -59,11 +59,26 @@ public class Ventana extends Application {
         titulo.getStyleClass().add("titulo");
         Button btnStart = new Button("Comenzar");
         btnStart.setOnAction(e -> stage.setScene(crearJuego()));
+        
+        Button btnAjustes = new Button("Ajustes");
+        btnAjustes.setOnAction(e -> stage.setScene(crearMenuAjustes()));
+ 
 
-        VBox menu = new VBox(20, titulo, btnStart);
+        VBox menu = new VBox(20, titulo, btnStart, btnAjustes);
         menu.setAlignment(Pos.CENTER);
 
         return nuevaEscena(menu);
+    }
+    
+    //Menu ajustes
+    private Scene crearMenuAjustes() {
+
+        Button btnRegresar = new Button("Regresar");
+        btnRegresar.setOnAction(e -> stage.setScene(crearMenu()));
+        VBox ajustes = new VBox(20, btnRegresar);
+        ajustes.setAlignment(Pos.CENTER);
+        
+        return nuevaEscena(ajustes);
     }
     
     // Metodo para crear escenas(Menu)
