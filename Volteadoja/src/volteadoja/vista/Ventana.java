@@ -153,10 +153,12 @@ public class Ventana extends Application {
         
         BorderPane juego = new BorderPane();
         campo.getStyleClass().add("campo");
-        juego.setTop(btnSalir);
         juego.setCenter(campo);
-        StackPane panelCartas = new StackPane(tablero);
+        
+        StackPane panelCartas = new StackPane(tablero, btnSalir);
         panelCartas.getStyleClass().add("panel");
+        StackPane.setAlignment(btnSalir, Pos.BOTTOM_RIGHT);
+        StackPane.setMargin(btnSalir, new Insets(0,10,10,0));
         juego.setBottom(panelCartas);
         
         return nuevaEscena(juego);
