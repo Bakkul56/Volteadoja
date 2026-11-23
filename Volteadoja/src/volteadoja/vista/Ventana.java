@@ -57,16 +57,30 @@ public class Ventana extends Application {
 	
 	// Metodo para crear escenas(Menu)
     private Scene crearMenu() {
+    	ImageView icono;
         Label titulo = new Label("Volteadoja");
         titulo.getStyleClass().add("titulo");
+        
+        //Boton Comenzar
         Button btnStart = new Button("Comenzar");
+        btnStart.getStyleClass().add("btn");
+        icono = new ImageView(getClass().getResource("img/grgl_01.PNG").toExternalForm());
+        icono.setFitWidth(64);
+        icono.setPreserveRatio(true);
+        btnStart.setGraphic(icono);
         btnStart.setOnAction(e -> stage.setScene(crearJuego()));
         
+        //Boton Austes
         Button btnAjustes = new Button("Ajustes");
+        btnAjustes.getStyleClass().add("btn");
+        icono = new ImageView(getClass().getResource("img/CasualUI_6_5.png").toExternalForm());
+        icono.setFitWidth(48);
+        icono.setPreserveRatio(true);
+        btnAjustes.setGraphic(icono);
         btnAjustes.setOnAction(e -> stage.setScene(crearMenuAjustes()));
- 
 
         VBox menu = new VBox(20, titulo, btnStart, btnAjustes);
+        
         menu.setAlignment(Pos.CENTER);
 
         return nuevaEscena(menu);
@@ -74,8 +88,13 @@ public class Ventana extends Application {
     
     //Menu ajustes
     private Scene crearMenuAjustes() {
-
+    	ImageView icono;
         Button btnRegresar = new Button("Regresar");
+        btnRegresar.getStyleClass().add("btn");
+        icono = new ImageView(getClass().getResource("img/CasualUI_6_6.png").toExternalForm());
+        icono.setFitWidth(48);
+        icono.setPreserveRatio(true);
+        btnRegresar.setGraphic(icono);
         btnRegresar.setOnAction(e -> stage.setScene(crearMenu()));
         VBox ajustes = new VBox(20, btnRegresar);
         ajustes.setAlignment(Pos.CENTER);
@@ -101,11 +120,11 @@ public class Ventana extends Application {
         campo.setRight(lblHeroe);
         campo.setPadding(new Insets(20, 60, 20, 60));
         
-        Button btnSalir = new Button("Salir");
-        btnSalir.getStyleClass().add("btn-salir");
+        Button btnSalir = new Button("Menu");
+        btnSalir.getStyleClass().add("btn");
         
-        ImageView icono = new ImageView(getClass().getResource("img/strl_01.png").toExternalForm());
-        icono.setFitWidth(24);
+        ImageView icono = new ImageView(getClass().getResource("img/CasualUI_6_8.png").toExternalForm());
+        icono.setFitWidth(48);
         icono.setPreserveRatio(true);
         btnSalir.setGraphic(icono);
         
@@ -135,13 +154,10 @@ public class Ventana extends Application {
                     actualizarTablero(partida, botones);   // mostrar ya la carta volteada
                     actualizarCampo(partida, lblHeroe, lblEnemigo);
                     
-                    EstadoPartida estado = partida.getEstado();              
-                    if (estado == EstadoPartida.VICTORIA) {                  
-                        stage.setScene(crearFin("Victoria! El enemigo fue derrotado."));
-                        return;
-                    }
-                    if (estado == EstadoPartida.DERROTA) {                   
-                        stage.setScene(crearFin("Derrota..."));
+                    EstadoPartida estado = partida.getEstado(); 
+                    
+                    if (estado == EstadoPartida.VICTORIA || estado == EstadoPartida.DERROTA) {                  
+                        stage.setScene(crearFin(estado));
                         return;
                     }
                     if (r == Resultado.NO_PAREJA) {
@@ -216,12 +232,39 @@ public class Ventana extends Application {
     }
     
     // Pantalla final: muestra el resultado y vuelve al menu
-    private Scene crearFin(String mensaje) {
-        Label texto = new Label(mensaje);
+    private Scene crearFin(EstadoPartida estado) {
+                
+    	ImageView icono;
+    	Label texto_final;
+    	
+    	if (estado == EstadoPartida.VICTORIA) {
+    	texto_final = new Label("Victoria! El enemigo fue derrotado.");
+    	icono = new ImageView(getClass().getResource("img/CasualUI_9_2.png").toExternalForm());
+    	} else if (estado == EstadoPartida.DERROTA) {
+    	texto_final = new Label("Derrota...");
+    	icono = new ImageView(getClass().getResource("img/icon_02.png").toExternalForm());
+    	} else {
+    		throw new IllegalArgumentException("crearFin solo acepta VICTORIA o DERROTA, no " + estado);
+    	}
+    	
+    	texto_final.getStyleClass().add("final");
+     	texto_final.getStyleClass().add("titulo");
+    	
+        icono.setFitWidth(64);
+        icono.setPreserveRatio(true);
+        texto_final.setGraphic(icono);
+        
+        //Boton Fin
         Button btnMenu = new Button("Volver al menu");
+        btnMenu.getStyleClass().add("btn");
+        btnMenu.getStyleClass().add("regresar");
+        icono = new ImageView(getClass().getResource("img/strl_01.png").toExternalForm());
+        icono.setFitWidth(48);
+        icono.setPreserveRatio(true);
+        btnMenu.setGraphic(icono);
         btnMenu.setOnAction(e -> stage.setScene(crearMenu()));
 
-        VBox fin = new VBox(20, texto, btnMenu);
+        VBox fin = new VBox(20, texto_final, btnMenu);
         fin.setAlignment(Pos.CENTER);
 
         return nuevaEscena(fin);

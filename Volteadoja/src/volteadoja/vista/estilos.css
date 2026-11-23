@@ -31,6 +31,12 @@
     -fx-text-fill: faded-copper;
 	-fx-effect: dropshadow(gaussian, carbon-black, 8, 0.5, 8, 8);
 }
+.titulo.final {
+	-fx-font-size: 24px;
+	-fx-content-display: left; 
+	-fx-graphic-text-gap: 6; 
+}
+
 
 /* Cartas boca abajo */
 .carta {
@@ -97,21 +103,23 @@
     -fx-border-image-repeat: stretch;
 }
 
-.btn-salir {
-	-fx-background-image: url("img/bt_02_b-darker.PNG");
+.btn{
+	-fx-background-image: url("img/bt_03_a.PNG");
 	-fx-background-size: stretch;
 	-fx-background-position: center;
 	-fx-background-color: transparent;
 	-fx-background-insets: 10;
 	-fx-background-radius: 16;
-
+	
 	-fx-text-fill: wishful-white;
 	-fx-font-weight: bold;
-    -fx-graphic: url("img/strl_01.png");
-    -fx-content-display: left; 
-    -fx-graphic-text-gap: 6;
+	-fx-font-size: 24px;
+	
+	-fx-content-display: left; 
+	-fx-graphic-text-gap: 6; 
 }
 
-.btn-salir:hover {
-	-fx-background-image: url("img/bt_02_b.PNG");
+.btn:hover {
+	-fx-background-image: url("img/bt_03_a-fill.PNG");
 }
+
