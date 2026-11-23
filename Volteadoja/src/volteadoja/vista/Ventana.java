@@ -69,6 +69,7 @@ public class Ventana extends Application {
 	
 	// Metodo para crear escenas(Menu)
     private Scene crearMenu() {
+    	sonidoMenu.setCycleCount(AudioClip.INDEFINITE);
     	sonidoMenu.setVolume(0.1);
     	sonidoMenu.play();
     	
@@ -129,6 +130,7 @@ public class Ventana extends Application {
     // Metodo para crear escenas(Menu)
     private Scene crearJuego() {
     	sonidoJuego.setVolume(0.05);
+    	sonidoJuego.setCycleCount(AudioClip.INDEFINITE);
     	sonidoJuego.play();
     	
     	Juego partida = new Juego();
