@@ -9,8 +9,8 @@
 	toffee-brown:   #945a39;
 	faded-copper:   #a38267;
 	pale-oak:       #d3c3aa;
-	embered-clay:   #b03a2e;
-	pompeian-red:	#d04a3c;
+	rust-brown:   	#a14320;
+	autumm-leaf:	#ea6823;
 	wishful-white:	#f4f1e8;
 	
 	carbon-black-alpha: rgba(25, 25, 25, 0.55);
@@ -34,7 +34,7 @@
 
 /* Cartas boca abajo */
 .carta {
-    -fx-background-color: embered-clay;
+    -fx-background-color: rust-brown;
     -fx-text-fill: wishful-white;
     -fx-font-weight: bold;
     -fx-background-radius: 8;
@@ -53,7 +53,7 @@
 }
 
 .carta:hover {
-    -fx-background-color: pompeian-red;
+    -fx-background-color: autumm-leaf;
 }
 
 /* Cartas eliminadas: invisibles, pero siguen ocupando su lugar */
@@ -95,4 +95,23 @@
     -fx-border-image-slice: 24;
     -fx-border-image-width: 16;
     -fx-border-image-repeat: stretch;
+}
+
+.btn-salir {
+	-fx-background-image: url("img/bt_02_b-darker.PNG");
+	-fx-background-size: stretch;
+	-fx-background-position: center;
+	-fx-background-color: transparent;
+	-fx-background-insets: 10;
+	-fx-background-radius: 16;
+
+	-fx-text-fill: wishful-white;
+	-fx-font-weight: bold;
+    -fx-graphic: url("img/strl_01.png");
+    -fx-content-display: left; 
+    -fx-graphic-text-gap: 6;
+}
+
+.btn-salir:hover {
+	-fx-background-image: url("img/bt_02_b.PNG");
 }

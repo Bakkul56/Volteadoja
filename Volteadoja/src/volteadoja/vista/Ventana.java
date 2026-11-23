@@ -1,5 +1,7 @@
 package volteadoja.vista;
 
+import javafx.scene.image.ImageView;
+
 import volteadoja.modelo.Heroe;
 import volteadoja.modelo.Enemigo;
 
@@ -100,6 +102,13 @@ public class Ventana extends Application {
         campo.setPadding(new Insets(20, 60, 20, 60));
         
         Button btnSalir = new Button("Salir");
+        btnSalir.getStyleClass().add("btn-salir");
+        
+        ImageView icono = new ImageView(getClass().getResource("img/strl_01.png").toExternalForm());
+        icono.setFitWidth(24);
+        icono.setPreserveRatio(true);
+        btnSalir.setGraphic(icono);
+        
         btnSalir.setOnAction(e -> stage.setScene(crearMenu()));
         
         GridPane tablero = new GridPane();
