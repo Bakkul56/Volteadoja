@@ -1,6 +1,7 @@
 package volteadoja.vista;
 
 import javafx.scene.image.ImageView;
+import javafx.scene.media.AudioClip;
 
 import volteadoja.modelo.Heroe;
 import volteadoja.modelo.Enemigo;
@@ -45,11 +46,16 @@ import javafx.scene.layout.StackPane;
 public class Ventana extends Application {
 	
 	private Stage stage;   // Se llega desde cualquier metodo
+	private AudioClip sonidoVoltear; //Carga del sonido de carta
 	
 	@Override
 	public void start(Stage stage) {
 		
 		this.stage = stage;
+		//Cargando sonido 
+        sonidoVoltear = new AudioClip(
+                getClass().getResource("sonidos/Flip Card_2.wav").toExternalForm());
+        
         stage.setTitle("Volteadoja");
         stage.setScene(crearMenu());
         stage.show();
@@ -151,6 +157,9 @@ public class Ventana extends Application {
                 btnCarta.getStyleClass().add("carta");
                 btnCarta.setOnAction(e -> {
                     Resultado r = partida.seleccionar(f, c);
+                    if (r != Resultado.INVALIDA && r != Resultado.ESPERANDO) {
+                        sonidoVoltear.play();
+                    }
                     actualizarTablero(partida, botones);   // mostrar ya la carta volteada
                     actualizarCampo(partida, lblHeroe, lblEnemigo);
                     
