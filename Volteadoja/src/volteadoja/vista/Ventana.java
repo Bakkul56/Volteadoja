@@ -47,6 +47,8 @@ public class Ventana extends Application {
 	
 	private Stage stage;   // Se llega desde cualquier metodo
 	private AudioClip sonidoVoltear; //Carga del sonido de carta
+	private AudioClip sonidoMenu; //Carga del sonido de carta
+	private AudioClip sonidoJuego; //Carga del sonido de carta
 	
 	@Override
 	public void start(Stage stage) {
@@ -55,6 +57,10 @@ public class Ventana extends Application {
 		//Cargando sonido 
         sonidoVoltear = new AudioClip(
                 getClass().getResource("sonidos/Flip Card_2.wav").toExternalForm());
+        sonidoMenu = new AudioClip(
+                getClass().getResource("sonidos/Wasteland Ruins.mp3").toExternalForm());
+        sonidoJuego = new AudioClip(
+                getClass().getResource("sonidos/Deceitful Castle.mp3").toExternalForm());
         
         stage.setTitle("Volteadoja");
         stage.setScene(crearMenu());
@@ -63,6 +69,10 @@ public class Ventana extends Application {
 	
 	// Metodo para crear escenas(Menu)
     private Scene crearMenu() {
+    	sonidoMenu.setVolume(0.1);
+    	sonidoMenu.play();
+    	
+    	
     	ImageView icono;
         Label titulo = new Label("Volteadoja");
         titulo.getStyleClass().add("titulo");
@@ -74,7 +84,11 @@ public class Ventana extends Application {
         icono.setFitWidth(64);
         icono.setPreserveRatio(true);
         btnStart.setGraphic(icono);
-        btnStart.setOnAction(e -> stage.setScene(crearJuego()));
+        btnStart.setOnAction(e -> {
+        	sonidoMenu.stop();
+        	stage.setScene(crearJuego());
+        });
+        
         
         //Boton Austes
         Button btnAjustes = new Button("Ajustes");
@@ -94,6 +108,7 @@ public class Ventana extends Application {
     
     //Menu ajustes
     private Scene crearMenuAjustes() {
+       	
     	ImageView icono;
         Button btnRegresar = new Button("Regresar");
         btnRegresar.getStyleClass().add("btn");
@@ -101,7 +116,10 @@ public class Ventana extends Application {
         icono.setFitWidth(48);
         icono.setPreserveRatio(true);
         btnRegresar.setGraphic(icono);
-        btnRegresar.setOnAction(e -> stage.setScene(crearMenu()));
+        btnRegresar.setOnAction(e -> {
+        	sonidoMenu.stop();
+        	stage.setScene(crearMenu());
+        	});
         VBox ajustes = new VBox(20, btnRegresar);
         ajustes.setAlignment(Pos.CENTER);
         
@@ -110,6 +128,8 @@ public class Ventana extends Application {
     
     // Metodo para crear escenas(Menu)
     private Scene crearJuego() {
+    	sonidoJuego.setVolume(0.05);
+    	sonidoJuego.play();
     	
     	Juego partida = new Juego();
     	
@@ -134,7 +154,10 @@ public class Ventana extends Application {
         icono.setPreserveRatio(true);
         btnSalir.setGraphic(icono);
         
-        btnSalir.setOnAction(e -> stage.setScene(crearMenu()));
+        btnSalir.setOnAction(e -> {
+        	sonidoJuego.stop();
+        	stage.setScene(crearMenu());
+        	});
         
         GridPane tablero = new GridPane();
         tablero.getStyleClass().add("tablero");
@@ -167,6 +190,7 @@ public class Ventana extends Application {
                     
                     if (estado == EstadoPartida.VICTORIA || estado == EstadoPartida.DERROTA) {                  
                         stage.setScene(crearFin(estado));
+                        sonidoJuego.stop();
                         return;
                     }
                     if (r == Resultado.NO_PAREJA) {
