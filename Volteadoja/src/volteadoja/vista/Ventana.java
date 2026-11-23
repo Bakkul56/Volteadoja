@@ -198,10 +198,10 @@ public class Ventana extends Application {
                         sonidoJuego.stop();
                         return;
                     }
-                    if (r == Resultado.NO_PAREJA) {
+                    if (r == Resultado.NO_PAREJA || r == Resultado.PAREJA || r == Resultado.JOKER) {
                         PauseTransition pausa = new PauseTransition(Duration.seconds(1));
                         pausa.setOnFinished(ev -> {
-                            partida.ocultarFallidas();
+                        	 partida.resolverTurno();
                             actualizarTablero(partida, botones);
                         });
                         pausa.play();
