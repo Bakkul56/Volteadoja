@@ -13,6 +13,8 @@
 	pompeian-red:	#d04a3c;
 	wishful-white:	#f4f1e8;
 	
+	carbon-black-alpha: rgba(25, 25, 25, 0.55);
+	
     -fx-background-color: dark-coffee;
     -fx-font-family: "Segoe UI";
 }
@@ -74,8 +76,8 @@
 
 /* Recuadro detrás del texto de cada personaje, para que se lea sobre el fondo */
 .personaje {
-    -fx-background-color: rgba(0, 0, 0, 0.55);
-    -fx-background-radius: 8;
+    -fx-background-color: carbon-black-alpha;
+    -fx-background-radius: 16;
     -fx-padding: 10;
 }
 
