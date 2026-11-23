@@ -2,6 +2,7 @@ package volteadoja.vista;
 
 import javafx.scene.image.ImageView;
 import javafx.scene.media.AudioClip;
+import javafx.scene.image.Image;
 
 import volteadoja.modelo.Heroe;
 import volteadoja.modelo.Enemigo;
@@ -54,6 +55,8 @@ public class Ventana extends Application {
 	public void start(Stage stage) {
 		
 		this.stage = stage;
+        stage.getIcons().add(
+                new Image(getClass().getResource("img/grgl_01.PNG").toExternalForm()));
 		//Cargando sonido 
         sonidoVoltear = new AudioClip(
                 getClass().getResource("sonidos/Flip Card_2.wav").toExternalForm());
