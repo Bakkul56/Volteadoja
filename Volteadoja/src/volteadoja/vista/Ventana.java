@@ -247,8 +247,9 @@ public class Ventana extends Application {
     		throw new IllegalArgumentException("crearFin solo acepta VICTORIA o DERROTA, no " + estado);
     	}
     	
+    	texto_final.getStyleClass().add("titulo");
     	texto_final.getStyleClass().add("final");
-     	texto_final.getStyleClass().add("titulo");
+     	
     	
         icono.setFitWidth(64);
         icono.setPreserveRatio(true);

@@ -32,7 +32,7 @@
 	-fx-effect: dropshadow(gaussian, carbon-black, 8, 0.5, 8, 8);
 }
 .titulo.final {
-	-fx-font-size: 24px;
+	-fx-font-size: 16px;
 	-fx-content-display: left; 
 	-fx-graphic-text-gap: 6; 
 }
