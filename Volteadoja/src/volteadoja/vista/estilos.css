@@ -18,7 +18,7 @@
 }
 
 .label {
-    -fx-text-fill: carbon-black;
+    -fx-text-fill: wishful-white;
     -fx-font-size: 16px;
 }
 
@@ -68,7 +68,7 @@
 /* Campo de batalla con fondo */
 .campo {
     -fx-background-image: url("img/bg_01.png");
-    -fx-background-size: cover;
+    -fx-background-size: stretch;
     -fx-background-position: center;
 }
 
